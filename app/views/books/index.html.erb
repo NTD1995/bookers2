@@ -1,0 +1,34 @@
+<h1>User info</h1>
+
+<%= form_with model: @user url: update_list_path(@user.id), method: :patch do |f| %>
+
+  <h4>Name</h4>
+  <%= f.text_field :title %>
+  
+ <h4>Image</h4>
+  <%= f.file_field :image, accept: "image/*" %>
+
+  <h4>Introduction</h4>
+  <%= f.text_area :body %>
+  
+  <%= f.submit 'Update User' %>
+  
+<% end %>
+
+
+
+<h1>Books</h1>
+
+<%= form_with model: @list, url:'/lists' do |f| %>
+
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+  
+  <h4>Opinion</h4>
+  <%= f.text_area :body %>
+
+
+  <%= f.submit 'Create Book' %>
+  <%= link_to "edit", edit_list_path(@user.id) %>
+
+<% end %>
