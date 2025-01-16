@@ -1,2 +1,17 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h1>投稿一覧</h1>
+<% @users.each do |user| %>
+
+  <p>タイトル</p>
+  <span>
+    <%=link_to user.title, list_path(user.id) %>
+  </span>
+  
+  
+  <p>Image</p>
+  <% if user.image.attached? %>
+    <%= image_tag user.image %>
+  <% else %>
+    <%= image_tag 'no_image'%>
+  <% end %>
+
+<% end %>

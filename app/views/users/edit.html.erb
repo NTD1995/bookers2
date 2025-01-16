@@ -2,20 +2,20 @@
 
 <%= form_with model: @user url: update_list_path(@user.id), method: :patch do |f| %>
 
-  <h4>Name</h4>
+  <h2>Name</h2>
   <%= f.text_field :title %>
   
- <h4>Image</h4>
-  <%= f.file_field :image, accept: "image/*" %>
-  <% if user.image.attached? %>
-    <%= image_tag user.image, size: "200x200" %>
-  <% else %>
-    <%= image_tag 'no_image', size: "200x200" %>
-  <% end %>
+<h2>Image</h2>
+<% if @user.image.attached? %>
+  <%= image_tag @user.image %>
+<% else %>
+  <%= image_tag 'no_image' %>
+<% end %>
 
-  <h4>Introduction</h4>
+  <h3>Introduction</h3>
   <%= f.text_area :body %>
   
   <%= f.submit 'Update User' %>
   
 <% end %>
+
