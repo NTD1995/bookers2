@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'users/edit'
   get 'users/index'
+  resources :users
   get 'books/new'
   get 'books/index'
   get 'books/show'
