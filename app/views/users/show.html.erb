@@ -27,16 +27,3 @@
   <%= f.text_area :Opinion %>
    <p><%= link_to 'Create Book', edit_book_path(book.id) %></p>
 <% end %>
-
-
-<h1>Users</h1>
-
-<% @users.each do |user| %>
-  <div>
-    <%= image_tag user.get_image %>
-    <p>image<%= image_tag 'no_image.jpg' %></p>
-    <p>name<%= user.name %></p>
-    <p><%= link_to "show", user_path(user.id) %></p>
-    
-  </div>
-<% end %>
