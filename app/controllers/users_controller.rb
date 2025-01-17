@@ -13,6 +13,9 @@ class UsersController < ApplicationController
   def index
   end
 
+  def show
+  end
+
     private
   def list_params
     params.require(:user).permit(:name, :image, :introduction)
