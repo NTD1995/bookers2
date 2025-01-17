@@ -1,7 +1,16 @@
-<h1>投稿一覧</h1>
+<h1>Users</h1>
 <% @users.each do |user| %>
 
-  <p>タイトル</p>
+  <p>image</p>
+  <% if user.image.attached? %>
+    <%= image_tag user.image %>
+  <% else %>
+    <%= image_tag 'no_image'%>
+  <% end %>
+
+
+
+  <p>show</p>
   <span>
     <%=link_to user.title, list_path(user.id) %>
   </span>
