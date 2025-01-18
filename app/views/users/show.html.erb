@@ -1,9 +1,7 @@
 <h1>User info</h1>
 
-<%= form_with model: @user url: update_list_path(@user.id), method: :patch do |f| %>
-
   <h2>Name</h2>
-  <%= f.text_field :title %>
+  <%= @user.name %>
   
 <h2>Image</h2>
 <% if @user.image.attached? %>
@@ -13,13 +11,11 @@
 <% end %>
 
   <h3>Introduction</h3>
-  <%= f.text_area :body %>
+  <%= @user.introduction %>
+
+  <p><%= link_to "Edit User", edit_user_path(@user) %></p>
+ 
   
-   <% if @user == current_user %>
-    <p><%= link_to "Edit User", edit_user_path(@user) %></p>
-  <% end %>
-  
-<% end %>
 
 <h1>New book</h1>
 <%= form_with model: @book do |f| %>
@@ -27,12 +23,12 @@
   <%= f.text_field :Title %>
   <h4>Opinion</h4>
   <%= f.text_area :Opinion %>
-   <p><%= link_to 'Create Book', edit_book_path(book.id) %></p>
+  <%= f.submit 'Create Book', class: "btn btn-lg btn-block btn-info mt-4" %>
 <% end %>
 
 
 <div>
-  <%= image_tag @user.get_profile_image(100,100) %>
+  <%= image_tag @user.get_image(100,100) %>
    <p><%= @user.name %></p>
-  <p><%= link_to 'show', book_path(user.id) %></p>
+  <p><%= link_to 'show', book_path(@user.id) %></p>
 </div>
