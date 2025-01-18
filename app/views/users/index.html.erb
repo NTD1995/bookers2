@@ -15,7 +15,9 @@
   <h3>Introduction</h3>
   <%= f.text_area :body %>
   
-  <%= f.submit 'Update User' %>
+  <% if @user == current_user %>
+    <p><%= link_to "Edit User", edit_user_path(@user) %></p>
+  <% end %>
   
 <% end %>
 

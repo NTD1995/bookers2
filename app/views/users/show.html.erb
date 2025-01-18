@@ -15,7 +15,9 @@
   <h3>Introduction</h3>
   <%= f.text_area :body %>
   
-  <%= f.submit 'Update User' %>
+   <% if @user == current_user %>
+    <p><%= link_to "Edit User", edit_user_path(@user) %></p>
+  <% end %>
   
 <% end %>
 
@@ -27,3 +29,10 @@
   <%= f.text_area :Opinion %>
    <p><%= link_to 'Create Book', edit_book_path(book.id) %></p>
 <% end %>
+
+
+<div>
+  <%= image_tag @user.get_profile_image(100,100) %>
+   <p><%= @user.name %></p>
+  <p><%= link_to 'show', book_path(user.id) %></p>
+</div>
