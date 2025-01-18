@@ -1,9 +1,7 @@
 <h1>User info</h1>
 
-<%= form_with model: @user url: update_list_path(@user.id), method: :patch do |f| %>
-
   <h2>Name</h2>
-  <%= f.text_field :title %>
+  <%= @user.name %>
   
 <h2>Image</h2>
 <% if @user.image.attached? %>
@@ -13,39 +11,31 @@
 <% end %>
 
   <h3>Introduction</h3>
-  <%= f.text_area :body %>
+  <%= @user.introduction %>
+
+  <p><%= link_to "Edit User", edit_user_path(@user) %></p>
   
-  <%= f.submit 'Update User' %>
-  
-<% end %>
 
 <h1>New book</h1>
 <%= form_with model: @book do |f| %>
   <h4>Title</h4>
-  <%= f.text_field :Title %>
+  <%= f.text_field :title %>
   <h4>Opinion</h4>
-  <%= f.text_area :Opinion %>
-   <p><%= link_to 'Create Book', edit_book_path(book.id) %></p>
+  <%= f.text_area :body %>
+ <%= f.submit 'Create Book', class: "btn btn-lg btn-block btn-info mt-4" %>
 <% end %>
 
 
 <h1>Book detail</h1>
 
 <div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
+  <%= link_to user_path(@user.id) do %>
+    <%= image_tag @user.get_image(100,100)%>
+  <% end %>
+     <p>Name<%= link_to @book.user.name, user_path(@user.id) %></p>
+        <p>Title<%= link_to @book.title, books_path(@user.id) %></p>
+          <p>Opinion<%= @book.body %></p>
+           <p><%= link_to 'Edit', edit_book_path(@book.id) %></p>
+            <p><%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => 'Are you sure？' %></p>
 </div>
 
-<% @books.each do |book| %>
-<div>
-  <%= link_to book_path(book.id) do %>
-    <%= image_tag user.get_image %>
-  <% end %>
-  <p><%= image_tag book.user.get_profile_image(100,100) %></p>
-     <p>Name<%= link_to 'book.user.name', book_path(user.id) %></p>
-        <p>Title<%= link_to 'book.title', books_path(user.id) %></p>
-          <p>Opinion<%= @book.opinion %></p>
-           <p><%= link_to 'Edit', edit_book_path(book.id) %></p>
-            <p><%= link_to "Destroy", destroy_book_path(@book.id), method: :delete, "data-confirm" => 'Are you sure？' %></p>
-</div>
-<% end %>

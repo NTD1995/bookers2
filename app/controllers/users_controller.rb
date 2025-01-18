@@ -10,15 +10,19 @@ class UsersController < ApplicationController
   end
 
   def index
+    @book = Book.find(current_user.id)
     @users = User.all
+    @user = User.new
   end
 
   def show
-    @user = User.find(params[:id])  
+    @book = Book.new
+    @user = User.find(params[:id]) 
+
   end
 
     private
-  def list_params
+  def user_params
     params.require(:user).permit(:name, :image, :introduction)
   end
 end

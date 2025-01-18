@@ -1,46 +1,40 @@
 <h1>User info</h1>
-<%= @books.each do |book| %>
 
-<%= form_with model: @user url: update_list_path(@user.id), method: :patch do |f| %>
-
-  <h4>Name</h4>
-  <%= f.text_field :title %>
+  <h2>Name</h2>
+  <%= @user.name %>
   
- <h4>Image</h4>
-  <%= f.file_field :image, accept: "image/*" %>
-
-  <h4>Introduction</h4>
-  <%= f.text_area :body %>
-  
-  <%= f.submit 'Update User' %>
-  
+<h2>Image</h2>
+<% if @user.image.attached? %>
+  <%= image_tag @user.image %>
+<% else %>
+  <%= image_tag 'no_image' %>
 <% end %>
 
+  <h3>Introduction</h3>
+  <%= @user.introduction %>
 
+  <p><%= link_to "Edit User", edit_user_path(@user) %></p>
+  
 
-<h1>Books</h1>
-
-<%= form_with model: @list, url:'/lists' do |f| %>
-
+<h1>New book</h1>
+<%= form_with model: @book do |f| %>
   <h4>Title</h4>
   <%= f.text_field :title %>
-  
   <h4>Opinion</h4>
   <%= f.text_area :body %>
-
-  <%= f.submit 'Create Book' %>
-  <%= link_to "edit", edit_book_path(@book.id) %>
-
+  <%= f.submit 'Create Book', class: "btn btn-lg btn-block btn-info mt-4" %>
 <% end %>
+
+
 
 <h1>Books</h1>
 
 <% @books.each do |book| %>
   <div>
-    <%= image_tag user.get_image %>
-    <p><%= link_to 'no_image.jpg', user_path(user.id) %></p>
-    <p>Title<%= link_to 'book.title', book_path(user.id) %></p> 
-    <p>Opinion<%= book.opinion %></p>
+    <%= image_tag book.user.get_image(100,100) %>
+    <p><%= link_to 'no_image.jpg', user_path(book.user.id) %></p>
+    <p>Title<%= link_to book.title, book_path(book.id) %></p> 
+    <p>Opinion<%= book.body %></p>
    
     
   </div>
