@@ -46,6 +46,6 @@
         <p>Title<%= link_to 'book.title', book_path(book.id) %></p>
           <p>Opinion<%= @book.opinion %></p>
            <p><%= link_to 'Edit', edit_book_path(book.id) %></p>
-              <p><%= link_to 'Destroy', edit_book_path(book.id) %></p>
+            <p><%= link_to "Destroy", destroy_book_path(@book.id), method: :delete, "data-confirm" => 'Are you sure？' %></p>
 </div>
 <% end %>
