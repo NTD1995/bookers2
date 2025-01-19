@@ -1,7 +1,7 @@
 <h1>User info</h1>
 
   <h2>Name</h2>
-  <%= f.text_field :title %>
+  <%= @user.name %>
   
 <h2>Image</h2>
 <% if @user.image.attached? %>
@@ -11,11 +11,9 @@
 <% end %>
 
   <h3>Introduction</h3>
-  <%= f.text_area :body %>
-  
-  <% if @user == current_user %>
-    <p><%= link_to "Edit User", edit_user_path(@user) %></p>
-  <% end %>
+  <%= @user.introduction %>
+
+  <p><%= link_to "Edit User", edit_user_path(@user) %></p>
   
 
 <h1>New book</h1>
@@ -33,9 +31,9 @@
 <% @users.each do |user| %>
   <div>
     <%= image_tag user.get_image(100,100) %>
-    <p>image<%= image_tag 'no_image.jpg' %></p>
-    <p>name<%= @user.name %></p>
-    <p><%= link_to "show", book_path(@user.id) %></p>
+    <p>image</p>
+    <p>name<%= user.name %></p>
+    <p><%= link_to "show", book_path(user.id) %></p>
     
   </div>
 <% end %>
