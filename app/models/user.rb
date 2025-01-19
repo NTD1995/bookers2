@@ -6,7 +6,11 @@ class User < ApplicationRecord
            has_one_attached :image
 
   has_many :books, dependent: :destroy
- has_one_attached :profile_image
+  has_one_attached :profile_image
+ 
+      validates :name, presence: true
+      validates :introduction, presence: true
+      validates :image, presence: true
   
     def get_image(width, height)
     unless profile_image.attached?
