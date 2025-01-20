@@ -27,7 +27,7 @@
            Edit
             <% end %>
                 </td> 
-            <td><%= link_to  book_path(@book.id), class: "btn btn-outline-secondary btn-block" do , method: :delete, "data-confirm" => 'Are you sure？' %>
+            <td><%= link_to  book_path(@book.id), class: "btn btn-outline-secondary btn-block" , method: :delete, "data-confirm" => 'Are you sure？' do %>
             Destroy
             <% end %>
             </td>
