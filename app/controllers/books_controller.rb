@@ -14,7 +14,7 @@ class BooksController < ApplicationController
       redirect_to book_path(@book.id)
     else
     @user = User.find(current_user.id)
-    @books = Book.all
+    @books = Book.page(params[:page])
          flash.now[:alert] = "Book was make a mistake created."
       render :index
     end
@@ -31,6 +31,7 @@ class BooksController < ApplicationController
     @user = User.find(current_user.id)
     @books = Book.page(params[:page])
     @book = Book.new
+
   end
 
   def show
