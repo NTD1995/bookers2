@@ -4,11 +4,12 @@
   <%= @user.name %>
   
 <h2>Image</h2>
-<% if @user.image.attached? %>
-  <%= image_tag @user.image %>
+<% if @user.profile_image.attached? %>
+  <%= image_tag @user.get_image(100,100) %>
 <% else %>
   <%= image_tag 'no_image' %>
 <% end %>
+
 
   <h3>Introduction</h3>
   <%= @user.introduction %>
